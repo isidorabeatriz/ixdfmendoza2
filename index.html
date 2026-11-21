@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="es" data-paleta="Taller" data-estilo="Neobrutalista">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IxDF Mendoza · Comunidad</title>
+<meta name="description" content="Comunidad IxDF Mendoza: encuentros, temas más votados y materiales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   TOKENS — copia 1:1 de las variables de Figma (colección → modo)
+   color/bg → --color-bg · radius/lg → --radius-lg · border/width → --border-width …
+   ========================================================================== */
+
+/* Colección "Paleta" */
+:root,
+[data-paleta="Taller"] {
+  --color-bg: #f4f1ea;
+  --color-surface: #fffdf8;
+  --color-text: #141413;
+  --color-text-muted: #4a4740;
+  --color-border: #141413;
+  --color-primary: #d97757;
+  --color-on-primary: #141413;
+  --color-secondary: #8ccbf2;
+  --color-on-secondary: #141413;
+  --color-chart-1: #e19c83;
+  --color-chart-2: #abd6f0;
+  --color-chart-3: #c3c0bb;
+  --color-fondo-trama: #cce3ed;
+  --color-fondo-degrade: #c5e0ee;
+}
+[data-paleta="Bosque"] {
+  --color-bg: #e2e9dd;
+  --color-surface: #fbfcf8;
+  --color-text: #17201a;
+  --color-text-muted: #4b5a50;
+  --color-border: #17201a;
+  --color-primary: #7fb77e;
+  --color-on-primary: #17201a;
+  --color-secondary: #c9b6f2;
+  --color-on-secondary: #17201a;
+  --color-chart-1: #9dc69a;
+  --color-chart-2: #d1c5ec;
+  --color-chart-3: #b5bdb2;
+  --color-fondo-trama: #d9d6e5;
+  --color-fondo-degrade: #d7d2e6;
+}
+[data-paleta="Noche"] {
+  --color-bg: #14161c;
+  --color-surface: #1e212a;
+  --color-text: #f2f0ea;
+  --color-text-muted: #a9adb8;
+  --color-border: #f2f0ea;
+  --color-primary: #f2c14e;
+  --color-on-primary: #14161c;
+  --color-secondary: #7fd6c2;
+  --color-on-secondary: #14161c;
+  --color-chart-1: #af8e3f;
+  --color-chart-2: #5f9c90;
+  --color-chart-3: #454649;
+  --color-fondo-trama: #233133;
+  --color-fondo-degrade: #34504e;
+}
+[data-paleta="Mono"] {
+  --color-bg: #ffffff;
+  --color-surface: #fbfbfa;
+  --color-text: #37352f;
+  --color-text-muted: #787774;
+  --color-border: #e3e2de;
+  --color-primary: #191919;
+  --color-on-primary: #ffffff;
+  --color-secondary: #efefed;
+  --color-on-secondary: #37352f;
+  --color-chart-1: #5e5e5e;
+  --color-chart-2: #f4f4f2;
+  --color-chart-3: #d3d3d1;
+  --color-fondo-trama: #f9f9f8;
+  --color-fondo-degrade: #f8f8f7;
+}
+
+/* Colección "Estilo" */
+:root,
+[data-estilo="Neobrutalista"] {
+  --radius-sm: 12px;
+  --radius-lg: 24px;
+  --border-width: 3px;
+  --shadow-offset: 6px;
+  --shadow-blur: 0px;
+  --shadow-color: #141413;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Bricolage Grotesque", system-ui, sans-serif;
+  --fondo: var(--fondo-cuadricula);
+}
+[data-estilo="Minimal"] {
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --border-width: 0px;
+  --shadow-offset: 4px;
+  --shadow-blur: 24px;
+  --shadow-color: #1414131a;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --fondo: none;
+}
+[data-estilo="Techy"] {
+  --radius-sm: 0px;
+  --radius-lg: 4px;
+  --border-width: 1px;
+  --shadow-offset: 0px;
+  --shadow-blur: 0px;
+  --shadow-color: #14141300;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "JetBrains Mono", ui-monospace, monospace;
+  --fondo: linear-gradient(to bottom, var(--color-fondo-degrade), var(--color-bg));
+}
+[data-estilo="Notion"] {
+  --radius-sm: 4px;
+  --radius-lg: 8px;
+  --border-width: 1px;
+  --shadow-offset: 0px;
+  --shadow-blur: 0px;
+  --shadow-color: #19191900;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --fondo: none;
+}
+
+/* Valores fijos que vienen del propio diseño (no son variables en Figma) */
+:root {
+  /* Cuadrícula de fondo: líneas de 1.5px cada 76px, giradas -12° */
+  --grid-size: 76px;
+  --grid-line: 1.5px;
+  --fondo-cuadricula:
+    repeating-linear-gradient(-12deg, var(--color-fondo-trama) 0 var(--grid-line), transparent var(--grid-line) var(--grid-size)),
+    repeating-linear-gradient(78deg, var(--color-fondo-trama) 0 var(--grid-line), transparent var(--grid-line) var(--grid-size));
+  --scrim: rgba(20, 20, 19, 0.2);
+  --stroke-fino: 1px;      /* divisores de datos, banner, filas de link */
+  --stroke-modal: 2px;     /* modal, fotos, banner del modal, botón cerrar */
+  --stroke-flecha: 1.5px;  /* círculo de la flecha en "Fila de link" */
+  --radius-pill: 999px;
+  --radius-md: 16px;       /* banner, fotos del modal */
+  --radius-xs: 4px;        /* cuadrado de color de la leyenda */
+  --pendiente: 0.45;       /* opacidad de links pendientes */
+  --sombra: var(--shadow-offset) var(--shadow-offset) var(--shadow-blur) 0 var(--shadow-color);
+  --sombra-drop: drop-shadow(var(--shadow-offset) var(--shadow-offset) calc(var(--shadow-blur) / 2) var(--shadow-color));
+  --page-pad: 100px;
+  --content: 1220px;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+/* Fondo según el estilo: cuadrícula (Neobrutalista), degradé (Techy) o liso */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fondo);
+  pointer-events: none;
+}
+body.modal-abierto { overflow: hidden; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+svg { display: block; flex-shrink: 0; }
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-surface);
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: 16px; top: -100px; z-index: 10;
+  background: var(--color-surface); color: var(--color-text);
+  border: var(--border-width) solid var(--color-border); border-radius: var(--radius-sm);
+  padding: 10px 18px;
+}
+.skip:focus { top: 16px; }
+
+/* ==========================================================================
+   ESTILOS DE TEXTO (text styles de Figma)
+   ========================================================================== */
+.display   { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; }
+.titulo    { font-family: var(--font-display); font-weight: 700; font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; }
+.subtitulo { font-family: var(--font-display); font-weight: 500; font-size: 24px; line-height: 1.3; letter-spacing: -0.005em; }
+.cuerpo    { font-family: var(--font-body);    font-weight: 400; font-size: 18px; line-height: 1.5; letter-spacing: 0; }
+.etiqueta  { font-family: var(--font-body);    font-weight: 500; font-size: 14px; line-height: 1.4; letter-spacing: 0.04em; }
+/* El título del hero usa Display a 96px en el diseño */
+.display--hero { font-size: 96px; }
+.muted { color: var(--color-text-muted); }
+
+/* ==========================================================================
+   COMPONENTES
+   ========================================================================== */
+
+/* --- Botón: Primario / Secundario / Fantasma × Grande / Chico --- */
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  border-radius: var(--radius-sm);
+  border: var(--border-width) solid transparent;
+  padding: 16px 28px;
+  white-space: nowrap;
+  transition: transform .12s ease, filter .12s ease;
+}
+.boton--grande { padding: 16px 28px; }
+.boton--chico  { padding: 10px 18px; }
+.boton--primario {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-border);
+  filter: var(--sombra-drop);
+}
+.boton--secundario {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border-color: var(--color-border);
+}
+.boton--fantasma { color: var(--color-text); }
+.boton--primario:hover { transform: translate(-2px, -2px); }
+.boton--primario:active { transform: translate(var(--shadow-offset), var(--shadow-offset)); filter: none; }
+.boton--secundario:hover { filter: brightness(1.05); }
+.boton--fantasma:hover span { text-decoration: underline; text-underline-offset: 4px; }
+.boton .icono { width: 24px; height: 24px; }
+.boton--chico .icono { width: 18px; height: 18px; }
+
+/* --- Chip --- */
+.chip {
+  display: inline-flex; align-items: flex-start;
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+
+/* --- Nav superior --- */
+.nav {
+  position: relative; z-index: 2;
+  background: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+.nav__barra {
+  display: flex; align-items: center; gap: 32px;
+  padding: 18px var(--page-pad);
+}
+.nav__logo { color: var(--color-text); }
+.nav__espacio { flex: 1 0 0; }
+.nav__links { display: flex; align-items: center; gap: 32px; }
+.nav__link { color: var(--color-text-muted); }
+.nav__link[aria-current="page"] { color: var(--color-text); }
+.nav__link:hover { color: var(--color-text); }
+.nav__menu-btn {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.nav__menu-btn .icono { width: 24px; height: 24px; }
+.nav__menu-btn .icono--cerrar { display: none; }
+.nav__movil { display: none; }
+
+/* --- Encabezado de sección --- */
+.encabezado { display: flex; flex-direction: column; gap: 12px; max-width: 720px; }
+.encabezado__eyebrow { color: var(--color-text-muted); }
+
+/* --- Card con imagen --- */
+.card {
+  display: flex; flex-direction: column;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  min-width: 0;
+}
+.card__imagen {
+  display: block; width: 100%; height: 250px;
+  object-fit: cover;
+  background: var(--color-secondary);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+.card__contenido { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 28px; }
+.card__descripcion { color: var(--color-text-muted); }
+
+/* --- Item de leyenda --- */
+.leyenda { display: flex; flex-direction: column; gap: 16px; }
+.leyenda__item { display: flex; align-items: flex-start; gap: 14px; }
+.leyenda__color {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xs);
+}
+.leyenda__texto { display: flex; flex-direction: column; gap: 2px; }
+
+/* --- Fila de link --- */
+.fila-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 0;
+  border-bottom: var(--stroke-fino) solid var(--color-border);
+  color: var(--color-text);
+}
+.fila-link__texto { flex: 1 0 0; min-width: 0; }
+.fila-link__flecha {
+  display: flex; padding: 8px;
+  border: var(--stroke-flecha) solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+.fila-link__flecha .icono { width: 20px; height: 20px; }
+a.fila-link:hover .fila-link__flecha { background: var(--color-secondary); color: var(--color-on-secondary); }
+a.fila-link:hover .fila-link__texto { text-decoration: underline; text-underline-offset: 4px; }
+.fila-link--pendiente { opacity: var(--pendiente); cursor: not-allowed; }
+
+/* --- Footer --- */
+.footer {
+  display: flex; align-items: center; gap: 32px;
+  padding: 32px var(--page-pad);
+  background: var(--color-surface);
+  border-top: var(--border-width) solid var(--color-border);
+}
+.footer__marca { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
+.footer__espacio { flex: 1 0 0; }
+.footer__links { display: flex; gap: 28px; white-space: nowrap; }
+.footer__links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* --- Modal (<dialog>) --- */
+.modal {
+  width: min(1160px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: var(--stroke-modal) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+.modal::backdrop { background: var(--scrim); }
+.modal[open] { display: flex; animation: aparecer .18s ease-out; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(12px); } }
+.modal__scroll {
+  position: relative;
+  display: flex; flex-direction: column; gap: 36px;
+  width: 100%;
+  padding: 56px;
+  overflow-y: auto;
+}
+.modal__scroll > * { flex-shrink: 0; }
+.modal__encabezado { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-right: 64px; }
+.modal__cerrar {
+  position: absolute; top: 38px; right: 54px;
+  display: flex; padding: 10px;
+  background: var(--color-surface);
+  border: var(--stroke-modal) solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+.modal__cerrar .icono { width: 24px; height: 24px; }
+.modal__cerrar:hover { background: var(--color-secondary); color: var(--color-on-secondary); }
+.modal__fotos {
+  display: flex; gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.modal__fotos::-webkit-scrollbar { display: none; }
+.modal__foto {
+  flex: 0 0 auto;
+  height: 260px; width: auto;
+  scroll-snap-align: start;
+  border: var(--stroke-modal) solid var(--color-border);
+  border-radius: var(--radius-md);
+  object-fit: contain;
+}
+div.modal__foto { width: var(--ancho); }
+.modal__banner {
+  display: block; width: 100%; aspect-ratio: 1044 / 334;
+  object-fit: cover;
+  background: var(--color-secondary);
+  border: var(--stroke-modal) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.modal__contenido { display: flex; flex-direction: column; gap: 56px; }
+.modal__actividad { display: flex; flex-direction: column; gap: 12px; }
+.modal__links-grilla { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+
+/* ==========================================================================
+   PÁGINA
+   ========================================================================== */
+.pagina { display: flex; flex-direction: column; gap: 40px; }
+main {
+  display: flex; flex-direction: column; gap: 40px;
+  width: 100%; max-width: calc(var(--content) + 2 * var(--page-pad));
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+.seccion { display: flex; flex-direction: column; justify-content: center; gap: 40px; padding: 56px 0; scroll-margin-top: 24px; }
+
+/* Hero */
+.hero { flex-direction: row; align-items: center; gap: 64px; }
+.hero__presentacion { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.hero__titulo { white-space: nowrap; }
+.hero__bajada { max-width: 700px; color: var(--color-text-muted); }
+.hero__acciones { display: flex; align-items: center; gap: 20px; padding-top: 8px; flex-wrap: wrap; }
+.datos { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; }
+.dato { display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-bottom: var(--stroke-fino) solid var(--color-border); }
+.dato .etiqueta { color: var(--color-text-muted); }
+
+/* Encuentros */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* Próximos temas */
+.temas { display: flex; align-items: center; gap: 72px; }
+.grafico { width: 340px; height: 340px; flex-shrink: 0; overflow: visible; filter: var(--sombra-drop); }
+.grafico path { stroke: var(--color-border); stroke-width: calc(var(--border-width) * 2); }
+.encuesta {
+  display: flex; align-items: center; gap: 24px;
+  padding: 24px 28px;
+  background: var(--color-surface);
+  border: var(--stroke-fino) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.encuesta__texto { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.encuesta__texto p:not(:first-child) { color: var(--color-text-muted); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+/* Desktop: las tres secciones del mismo alto, como en Figma */
+@media (min-width: 1024px) {
+  .seccion { min-height: 862px; }
+}
+
+/* Tablet */
+@media (max-width: 1023.98px) {
+  :root { --page-pad: 40px; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 40px; padding-top: 80px; }
+  .datos { width: 100%; flex-direction: row; gap: 24px; }
+  .dato { flex: 1 1 0; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .temas { gap: 48px; }
+  .nav__barra, .nav__links { gap: 24px; }
+  .modal__scroll { padding: 40px; }
+  .modal__cerrar { top: 28px; right: 28px; }
+}
+
+/* Nav compacta (variante Mobile de Figma): logo + hamburguesa; abierta = links + CTA.
+   Arranca en tablet porque con fuentes anchas (JetBrains Mono) la fila de links no entra. */
+@media (max-width: 1023.98px) {
+  .nav__barra { padding: 14px var(--page-pad); }
+  .nav__links, .nav__barra > .boton { display: none; }
+  .nav__menu-btn { display: flex; }
+  .nav.abierta .nav__menu-btn .icono--menu { display: none; }
+  .nav.abierta .nav__menu-btn .icono--cerrar { display: block; }
+  .nav.abierta .nav__movil { display: flex; flex-direction: column; padding-bottom: 24px; }
+  .nav__movil a.subtitulo { padding: 16px var(--page-pad); border-top: var(--border-width) solid var(--color-border); }
+  .nav__movil-cta { padding: 8px var(--page-pad) 0; }
+  .nav__movil-cta .boton { width: 100%; }
+}
+.nav__link { white-space: nowrap; }
+
+/* Celular */
+@media (max-width: 719.98px) {
+  :root { --page-pad: 20px; }
+  .pagina { gap: 24px; }
+  main { gap: 16px; }
+  .seccion { padding: 40px 0; gap: 32px; }
+
+  .hero { padding-top: 40px; }
+  .display--hero { font-size: 56px; }
+  .hero__titulo { white-space: normal; }
+  .datos { flex-direction: column; gap: 0; }
+  .cards { grid-template-columns: 1fr; }
+  .temas { flex-direction: column; align-items: flex-start; gap: 32px; }
+  .grafico { width: min(340px, 100%); height: auto; aspect-ratio: 1; align-self: center; }
+  .encuesta { flex-direction: column; align-items: flex-start; padding: 20px; }
+
+  .footer { flex-direction: column; align-items: flex-start; gap: 20px; padding: 32px 20px; }
+  .footer__espacio { display: none; }
+  .footer__links { flex-direction: column; gap: 12px; }
+
+  .modal { width: calc(100% - 16px); max-height: calc(100dvh - 16px); }
+  .modal__scroll { padding: 24px 20px; gap: 28px; }
+  .modal__cerrar { top: 20px; right: 20px; }
+  .modal__encabezado .display { font-size: 32px; line-height: 1.2; letter-spacing: -0.01em; } /* = Título */
+  .modal__foto { height: 200px; }
+  .modal__contenido { gap: 32px; }
+  .modal__links-grilla { grid-template-columns: 1fr; gap: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .modal[open] { animation: none; }
+  .boton { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip etiqueta" href="#contenido">Saltar al contenido</a>
+
+<!-- Íconos (el color sale de currentColor → color/text) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12H19M13 18L19 12L13 6" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+  <symbol id="i-flecha-chica" viewBox="0 0 18 18"><path d="M3.75 9H14.25M9.75 13.5L14.25 9L9.75 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+  <symbol id="i-arriba-derecha" viewBox="0 0 20 20"><path d="M5.83333 14.1667L14.1667 5.83333M14.1667 12.5V5.83333H7.5" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></symbol>
+</svg>
+
+<div class="pagina">
+  <header class="nav" id="nav"></header>
+
+  <main id="contenido">
+    <section class="seccion hero" id="inicio" aria-labelledby="hero-titulo">
+      <div class="hero__presentacion">
+        <span class="chip etiqueta" data-slot="hero.chip"></span>
+        <h1 class="display display--hero hero__titulo" id="hero-titulo" data-slot="hero.titulo"></h1>
+        <p class="subtitulo hero__bajada" data-slot="hero.bajada"></p>
+        <div class="hero__acciones" id="hero-acciones"></div>
+      </div>
+      <dl class="datos" id="datos"></dl>
+    </section>
+
+    <section class="seccion" id="encuentros" aria-labelledby="encuentros-titulo">
+      <div data-componente="encabezado" data-id="encuentros"></div>
+      <ul class="cards" id="cards"></ul>
+    </section>
+
+    <section class="seccion" id="temas" aria-labelledby="temas-titulo">
+      <div data-componente="encabezado" data-id="temas"></div>
+      <div class="temas">
+        <svg class="grafico" id="grafico" viewBox="0 0 340 340" role="img" aria-labelledby="grafico-desc"><title id="grafico-desc"></title></svg>
+        <ul class="leyenda" id="leyenda"></ul>
+      </div>
+      <aside class="encuesta" id="encuesta" aria-label="Encuesta"></aside>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer"></footer>
+</div>
+
+<dialog class="modal" id="modal" aria-labelledby="modal-titulo"></dialog>
+
+<script>
+/* ==========================================================================
+   CONTENIDO — editá acá, sin tocar el HTML
+   ========================================================================== */
+const SITIO = {
+  logo: "Logo",
+  nav: [
+    { texto: "Sección 1", href: "#inicio" },
+    { texto: "Sección 2", href: "#encuentros" },
+    { texto: "Sección 3", href: "#temas" },
+    { texto: "Sección 4", href: "#footer" },
+  ],
+  cta: { texto: "Call to action", href: "#encuentros" },
+
+  hero: {
+    chip: "Esto es una tag",
+    titulo: "Acá va tu título",
+    bajada: "Una descripción larga. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    principal: { texto: "Link principal", href: "#encuentros" },
+    secundario: { texto: "Link secundario", href: "#temas" },
+    datos: [
+      { numero: "Número", metrica: "Métrica" },
+      { numero: "Número", metrica: "Métrica" },
+      { numero: "Número", metrica: "Métrica" },
+    ],
+  },
+
+  secciones: {
+    encuentros: { eyebrow: "TAG DE SECCIÓN", titulo: "Título de la sección", bajada: "Una descripción corta de la sección. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+    temas:      { eyebrow: "TAG DE SECCIÓN", titulo: "Título de la sección", bajada: "Una descripción corta del gráfico. Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+  },
+
+  /* Cada encuentro es una card y su modal.
+     modal: "fotos" → carrusel de fotos · "banner" → imagen grande.
+     Para fotos reales: { src: "assets/brunch-1.jpg", alt: "…" }. Sin src se dibuja un marco vacío del ancho indicado. */
+  encuentros: [
+    {
+      id: "encuentro-1",
+      tag: "Tag", titulo: "Título",
+      descripcion: "Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      portada: { src: "", alt: "Portada del encuentro 1" },
+      modal: "fotos",
+      detalle: "Descripción del detalle. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      fotos: [
+        { src: "", alt: "Foto 1 del encuentro 1", ancho: 378 },
+        { src: "", alt: "Foto 2 del encuentro 1", ancho: 378 },
+        { src: "", alt: "Foto 3 del encuentro 1", ancho: 378 },
+        { src: "", alt: "Foto 4 del encuentro 1", ancho: 378 },
+      ],
+      links: [
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+      ],
+    },
+    {
+      id: "encuentro-2",
+      tag: "Tag", titulo: "Título",
+      descripcion: "Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      portada: { src: "", alt: "Portada del encuentro 2" },
+      modal: "fotos",
+      detalle: "Descripción del detalle. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      fotos: [
+        { src: "", alt: "Foto 1 del encuentro 2", ancho: 378 },
+        { src: "", alt: "Foto 2 del encuentro 2", ancho: 378 },
+        { src: "", alt: "Foto 3 del encuentro 2", ancho: 378 },
+        { src: "", alt: "Foto 4 del encuentro 2", ancho: 378 },
+      ],
+      links: [
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+      ],
+    },
+    {
+      id: "encuentro-3",
+      tag: "Tag", titulo: "Título",
+      descripcion: "Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      portada: { src: "", alt: "Portada del encuentro 3" },
+      modal: "banner",
+      banner: { src: "", alt: "Banner del encuentro 3" },
+      detalle: "Descripción del detalle. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      links: [
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link pendiente", pendiente: true },   // ← gris y sin poder tocarse
+        { texto: "Link a un recurso", href: "#" },
+        { texto: "Link a un recurso", href: "#" },
+      ],
+    },
+  ],
+
+  /* Gráfico de temas: la torta y la leyenda salen de acá. color: 1, 2 o 3 → --color-chart-N */
+  temas: [
+    { tema: "Esto es una métrica",  ideas: 22, color: 1 },
+    { tema: "Esto es otra métrica", ideas: 18, color: 2 },
+    { tema: "Esto es otra métrica", ideas: 18, color: 3 },
+    { tema: "Esto es otra métrica", ideas: 18, color: 1 },
+    { tema: "Esto es otra métrica", ideas: 12, color: 2 },
+    { tema: "Esto es otra métrica", ideas: 12, color: 3 },
+  ],
+
+  encuesta: {
+    titulo: "Un banner con información",
+    texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    nota: "Nota o aclaración en tamaño chico.",
+    boton: { texto: "Call to action", href: "#" },
+  },
+
+  footer: {
+    bajada: "Footer",
+    links: [
+      { texto: "Instagram", href: "https://instagram.com" },
+      { texto: "LinkedIn",  href: "https://linkedin.com" },
+      { texto: "Sitio",     href: "#inicio" },
+    ],
+  },
+};
+
+/* ==========================================================================
+   COMPONENTES (una función por componente de Figma)
+   ========================================================================== */
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const icono = (id, extra = "") => `<svg class="icono ${extra}" aria-hidden="true" focusable="false"><use href="#${id}"/></svg>`;
+
+/** Botón — tipo: primario | secundario | fantasma · tamano: grande | chico */
+function Boton({ texto, href, tipo = "primario", tamano = "grande", icono: conIcono = true, attrs = "" }) {
+  const clases = `boton boton--${tipo} boton--${tamano} ${tamano === "grande" ? "cuerpo" : "etiqueta"}`;
+  const flecha = conIcono ? icono(tamano === "grande" ? "i-flecha" : "i-flecha-chica") : "";
+  const inner = `<span>${esc(texto)}</span>${flecha}`;
+  return href != null
+    ? `<a class="${clases}" href="${esc(href)}" ${attrs}>${inner}</a>`
+    : `<button type="button" class="${clases}" ${attrs}>${inner}</button>`;
+}
+
+/** Chip */
+const Chip = texto => `<span class="chip etiqueta">${esc(texto)}</span>`;
+
+/** Nav superior (desktop + mobile + mobile abierto) */
+function NavSuperior({ logo, nav, cta }) {
+  const links = nav.map((l, i) => `<a class="nav__link cuerpo" href="${esc(l.href)}"${i === 0 ? ' aria-current="page"' : ""}>${esc(l.texto)}</a>`).join("");
+  const movil = nav.map(l => `<a class="subtitulo" href="${esc(l.href)}">${esc(l.texto)}</a>`).join("");
+  return `
+    <nav class="nav__barra" aria-label="Principal">
+      <a class="nav__logo subtitulo" href="#inicio">${esc(logo)}</a>
+      <span class="nav__espacio"></span>
+      <div class="nav__links">${links}</div>
+      ${Boton({ ...cta, tamano: "chico" })}
+      <button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="nav-movil">
+        <span class="sr-only">Abrir menú</span>${icono("i-menu", "icono--menu")}${icono("i-cerrar", "icono--cerrar")}
+      </button>
+    </nav>
+    <div class="nav__movil" id="nav-movil">
+      ${movil}
+      <div class="nav__movil-cta">${Boton({ ...cta, tamano: "chico" })}</div>
+    </div>`;
+}
+
+/** Encabezado de sección */
+function EncabezadoDeSeccion({ eyebrow, titulo, bajada }, id) {
+  return `<div class="encabezado">
+      <p class="etiqueta encabezado__eyebrow">${esc(eyebrow)}</p>
+      <h2 class="titulo" id="${id}-titulo">${esc(titulo)}</h2>
+      ${bajada ? `<p class="cuerpo muted">${esc(bajada)}</p>` : ""}
+    </div>`;
+}
+
+/** Imagen o marco vacío del mismo tamaño (cuando todavía no hay foto) */
+function Imagen({ src, alt }, clase, estilo = "") {
+  return src
+    ? `<img class="${clase}" src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async" style="${estilo}">`
+    : `<div class="${clase}" role="img" aria-label="${esc(alt)}" style="${estilo}"></div>`;
+}
+
+/** Card con imagen */
+function CardConImagen(e) {
+  return `<li class="card">
+      ${Imagen(e.portada, "card__imagen")}
+      <div class="card__contenido">
+        ${Chip(e.tag)}
+        <h3 class="subtitulo">${esc(e.titulo)}</h3>
+        <p class="cuerpo card__descripcion">${esc(e.descripcion)}</p>
+        ${Boton({ texto: "Ver detalle", tipo: "secundario", tamano: "chico", attrs: `data-abrir="${esc(e.id)}" aria-haspopup="dialog"` })}
+      </div>
+    </li>`;
+}
+
+/** Item de leyenda */
+function ItemDeLeyenda({ tema, ideas, color }, total) {
+  const pct = Math.round((ideas / total) * 100);
+  return `<li class="leyenda__item">
+      <span class="leyenda__color" style="background: var(--color-chart-${color})" aria-hidden="true"></span>
+      <span class="leyenda__texto">
+        <span class="cuerpo">${esc(tema)}</span>
+        <span class="etiqueta muted">${ideas} ideas · ${pct}%</span>
+      </span>
+    </li>`;
+}
+
+/** Fila de link — pendiente: gris y sin poder tocarse */
+function FilaDeLink({ texto, href, pendiente }) {
+  const flecha = `<span class="fila-link__flecha">${icono("i-arriba-derecha")}</span>`;
+  return pendiente
+    ? `<li><span class="fila-link fila-link--pendiente" aria-disabled="true"><span class="cuerpo fila-link__texto">${esc(texto)} <span class="sr-only">(todavía no disponible)</span></span>${flecha}</span></li>`
+    : `<li><a class="fila-link" href="${esc(href)}" target="_blank" rel="noopener"><span class="cuerpo fila-link__texto">${esc(texto)}</span>${flecha}</a></li>`;
+}
+
+/** Footer */
+function Footer({ logo }, { bajada, links }) {
+  return `<div class="footer__marca">
+      <span class="subtitulo">${esc(logo)}</span>
+      <span class="etiqueta muted">${esc(bajada)}</span>
+    </div>
+    <span class="footer__espacio"></span>
+    <ul class="footer__links cuerpo">${links.map(l => `<li><a href="${esc(l.href)}">${esc(l.texto)}</a></li>`).join("")}</ul>`;
+}
+
+/** Modal — variante "fotos" (carrusel) o "banner" */
+function Modal(e) {
+  const media = e.modal === "banner"
+    ? Imagen(e.banner, "modal__banner")
+    : `<div class="modal__fotos" tabindex="0" role="region" aria-label="Fotos del encuentro (desplazá horizontalmente)">
+         ${e.fotos.map(f => Imagen(f, "modal__foto", f.src ? "" : `--ancho:${Number(f.ancho) || 378}px`)).join("")}
+       </div>`;
+  return `<div class="modal__scroll">
+      <div class="modal__encabezado">
+        ${Chip(e.tag)}
+        <h2 class="display" id="modal-titulo">${esc(e.titulo)}</h2>
+      </div>
+      ${media}
+      <div class="modal__contenido">
+        <div class="modal__actividad">
+          <h3 class="etiqueta muted">ACTIVIDAD</h3>
+          <p class="cuerpo">${esc(e.detalle)}</p>
+        </div>
+        <div>
+          <h3 class="etiqueta muted">LINKS Y MATERIALES</h3>
+          <ul class="modal__links-grilla">${e.links.map(FilaDeLink).join("")}</ul>
+        </div>
+      </div>
+      <button class="modal__cerrar" type="button" data-cerrar>${icono("i-cerrar")}<span class="sr-only">Cerrar</span></button>
+    </div>`;
+}
+
+/** Torta "explotada" en SVG — gajos separados 8px, colores --color-chart-1..3 */
+function TortaExplotada(svg, temas) {
+  const C = 170, R = 150, SEPARACION = 8;
+  const total = temas.reduce((s, t) => s + t.ideas, 0);
+  const punto = (ang, r, dx, dy) => [C + dx + r * Math.sin(ang), C + dy - r * Math.cos(ang)].map(n => n.toFixed(2));
+  let a0 = 0, defs = "", gajos = "";
+  temas.forEach((t, i) => {
+    const a1 = a0 + (t.ideas / total) * Math.PI * 2;
+    const medio = (a0 + a1) / 2;
+    const dx = SEPARACION * Math.sin(medio), dy = -SEPARACION * Math.cos(medio);
+    const [cx, cy] = punto(0, 0, dx, dy);
+    const [x0, y0] = punto(a0, R, dx, dy);
+    const [x1, y1] = punto(a1, R, dx, dy);
+    const d = `M${cx} ${cy}L${x0} ${y0}A${R} ${R} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1} ${y1}Z`;
+    // borde interior (como el stroke "inside" de Figma): trazo doble recortado por el propio gajo
+    defs += `<clipPath id="gajo-${i}"><path d="${d}"/></clipPath>`;
+    gajos += `<path d="${d}" fill="var(--color-chart-${t.color})" clip-path="url(#gajo-${i})"/>`;
+    a0 = a1;
+  });
+  const desc = "Temas más votados: " + temas.map(t => `${t.tema}, ${t.ideas} ideas`).join("; ");
+  svg.innerHTML = `<title id="grafico-desc">${esc(desc)}</title><defs>${defs}</defs>${gajos}`;
+  return total;
+}
+
+/* ==========================================================================
+   RENDER
+   ========================================================================== */
+const $ = s => document.querySelector(s);
+
+// Modo de diseño por URL: ?paleta=Noche&estilo=Techy
+const params = new URLSearchParams(location.search);
+["paleta", "estilo"].forEach(k => { if (params.get(k)) document.documentElement.dataset[k] = params.get(k); });
+
+$("#nav").innerHTML = NavSuperior(SITIO);
+
+document.querySelectorAll("[data-slot]").forEach(el => {
+  el.textContent = el.dataset.slot.split(".").reduce((o, k) => o[k], SITIO);
+});
+$("#hero-acciones").innerHTML =
+  Boton({ ...SITIO.hero.principal, icono: false }) +
+  Boton({ ...SITIO.hero.secundario, tipo: "fantasma" });
+$("#datos").innerHTML = SITIO.hero.datos.map(d =>
+  `<div class="dato"><dt class="titulo">${esc(d.numero)}</dt><dd class="etiqueta" style="margin:0">${esc(d.metrica)}</dd></div>`).join("");
+
+document.querySelectorAll('[data-componente="encabezado"]').forEach(el => {
+  el.outerHTML = EncabezadoDeSeccion(SITIO.secciones[el.dataset.id], el.dataset.id);
+});
+
+$("#cards").innerHTML = SITIO.encuentros.map(CardConImagen).join("");
+
+const total = TortaExplotada($("#grafico"), SITIO.temas);
+$("#leyenda").innerHTML = SITIO.temas.map(t => ItemDeLeyenda(t, total)).join("");
+
+const enc = SITIO.encuesta;
+$("#encuesta").innerHTML = `<div class="encuesta__texto">
+    <p class="subtitulo">${esc(enc.titulo)}</p>
+    <p class="cuerpo">${esc(enc.texto)}</p>
+    <p class="etiqueta">${esc(enc.nota)}</p>
+  </div>${Boton({ ...enc.boton, tipo: "secundario", tamano: "chico" })}`;
+
+$("#footer").innerHTML = Footer(SITIO, SITIO.footer);
+
+/* ==========================================================================
+   COMPORTAMIENTO
+   ========================================================================== */
+// Menú hamburguesa
+const nav = $("#nav"), menuBtn = nav.querySelector(".nav__menu-btn");
+function cerrarMenu() {
+  nav.classList.remove("abierta");
+  menuBtn.setAttribute("aria-expanded", "false");
+  menuBtn.querySelector(".sr-only").textContent = "Abrir menú";
+}
+menuBtn.addEventListener("click", () => {
+  const abierta = nav.classList.toggle("abierta");
+  menuBtn.setAttribute("aria-expanded", String(abierta));
+  menuBtn.querySelector(".sr-only").textContent = abierta ? "Cerrar menú" : "Abrir menú";
+});
+nav.querySelectorAll(".nav__movil a").forEach(a => a.addEventListener("click", cerrarMenu));
+document.addEventListener("keydown", e => { if (e.key === "Escape" && nav.classList.contains("abierta")) { cerrarMenu(); menuBtn.focus(); } });
+
+// Modal: abre con "Ver detalle"/"Entrar"; cierra con la cruz, Escape (nativo de <dialog>) o tocando afuera
+const modal = $("#modal");
+let disparador = null;
+document.addEventListener("click", e => {
+  const btn = e.target.closest("[data-abrir]");
+  if (!btn) return;
+  const encuentro = SITIO.encuentros.find(x => x.id === btn.dataset.abrir);
+  if (!encuentro) return;
+  disparador = btn;
+  modal.innerHTML = Modal(encuentro);
+  modal.showModal();
+  document.body.classList.add("modal-abierto");
+  modal.querySelector("[data-cerrar]").focus();
+});
+modal.addEventListener("click", e => {
+  if (e.target.closest("[data-cerrar]") || e.target === modal) modal.close();
+});
+modal.addEventListener("close", () => {
+  document.body.classList.remove("modal-abierto");
+  if (disparador) disparador.focus();
+});
+</script>
+</body>
+</html>
